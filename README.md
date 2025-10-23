@@ -25,6 +25,7 @@ El proyecto incluye una **carpeta deploy/** con todas las DLL necesarias para ej
 
 ### 📚 Estructura del Proyecto
 
+```
 
 📁 AnalizadorLexicoGUI/
 │
@@ -39,6 +40,7 @@ El proyecto incluye una **carpeta deploy/** con todas las DLL necesarias para ej
 │   └── platforms/qwindows.dll
 └── README.md               # Documentación del proyecto
 
+````
 
 ---
 

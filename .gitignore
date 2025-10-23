@@ -1,0 +1,5 @@
+# Ignored items
+Lib/
+Platforms/
+deploy_ldd_result.txt
+deply.sh

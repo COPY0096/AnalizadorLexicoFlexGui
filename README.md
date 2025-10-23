@@ -9,7 +9,7 @@ JEREMY SURIEL 1-20-2049
 Este proyecto implementa un **Analizador Léxico** desarrollado en **C++ utilizando FLEX** para la generación del analizador y **Qt** para la interfaz gráfica.
 El programa permite analizar el contenido de un archivo de texto, identificando los **tokens** definidos en el lenguaje diseñado, y mostrando los resultados visualmente en una tabla dentro de la ventana principal.
 
-Ahora, el proyecto incluye una **carpeta deploy/** con todas las DLL necesarias para ejecutar el programa en Windows sin necesidad de instalar Qt o copiar DLLs manualmente.
+El proyecto incluye una **carpeta deploy/** con todas las DLL necesarias para ejecutar el programa en Windows sin necesidad de instalar Qt o copiar DLLs manualmente.
 
 ---
 
@@ -25,7 +25,6 @@ Ahora, el proyecto incluye una **carpeta deploy/** con todas las DLL necesarias 
 
 ### 📚 Estructura del Proyecto
 
-```
 
 📁 AnalizadorLexicoGUI/
 │
@@ -40,7 +39,6 @@ Ahora, el proyecto incluye una **carpeta deploy/** con todas las DLL necesarias 
 │   └── platforms/qwindows.dll
 └── README.md               # Documentación del proyecto
 
-````
 
 ---
 

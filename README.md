@@ -153,4 +153,8 @@ g++ -std=c++17 -o AnalizadorLexicoGUI main.cpp gui_app.cpp lex.yy.c -lQt5Widgets
 
 ---
 
+### 📺 Link en Video Youtube
 
+[https://youtu.be/ub43HkJdUi8](https://youtu.be/ub43HkJdUi8)
+
+---

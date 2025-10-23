@@ -2,77 +2,55 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int num_linea = 1;  // Contador de líneas
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+void enviar_token_a_gui(const char* tipo, const char* valor);
+int yywrap(void);
+int yylex(void);
+
+#ifdef __cplusplus
+}
+#endif
+
+int num_linea = 1;
 %}
 
 
-DIGITO      [0-9]
-ID_LETRA    [a-zA-Z_]
-NUMERO      {DIGITO}+(\.{DIGITO}+)?
-IDENTIFICADOR {ID_LETRA}({ID_LETRA}|{DIGITO})*
+DIGITO          [0-9]
+ID_LETRA        [a-zA-Z_]
+NUMERO          {DIGITO}+(\.{DIGITO}+)?
+IDENTIFICADOR   {ID_LETRA}({ID_LETRA}|{DIGITO})*
 
 %%
 
+"if"            { enviar_token_a_gui("IF", yytext); }
+"else"          { enviar_token_a_gui("ELSE", yytext); }
+"while"         { enviar_token_a_gui("WHILE", yytext); }
+"for"           { enviar_token_a_gui("FOR", yytext); }
+"int"           { enviar_token_a_gui("INT", yytext); }
+"float"         { enviar_token_a_gui("FLOAT", yytext); }
+"return"        { enviar_token_a_gui("RETURN", yytext); }
 
-"if"            { printf("TOKEN: IF\n"); }
-"else"          { printf("TOKEN: ELSE\n"); }
-"while"         { printf("TOKEN: WHILE\n"); }
-"for"           { printf("TOKEN: FOR\n"); }
-"int"           { printf("TOKEN: INT\n"); }
-"float"         { printf("TOKEN: FLOAT\n"); }
-"return"        { printf("TOKEN: RETURN\n"); }
+{NUMERO}        { enviar_token_a_gui("NUMERO", yytext); }
+{IDENTIFICADOR} { enviar_token_a_gui("IDENTIFICADOR", yytext); }
 
+"=="            { enviar_token_a_gui("OPERADOR RELACIONAL", yytext); }
+"!="            { enviar_token_a_gui("OPERADOR RELACIONAL", yytext); }
+"<="            { enviar_token_a_gui("OPERADOR RELACIONAL", yytext); }
+">="            { enviar_token_a_gui("OPERADOR RELACIONAL", yytext); }
 
-{NUMERO}        { printf("TOKEN: NUMERO (%s)\n", yytext); }
-{IDENTIFICADOR} { printf("TOKEN: IDENTIFICADOR (%s)\n", yytext); }
-
-
-"=="            { printf("TOKEN: OPERADOR RELACIONAL (%s)\n", yytext); }
-"!="            { printf("TOKEN: OPERADOR RELACIONAL (%s)\n", yytext); }
-"<="            { printf("TOKEN: OPERADOR RELACIONAL (%s)\n", yytext); }
-">="            { printf("TOKEN: OPERADOR RELACIONAL (%s)\n", yytext); }
-
-[+\-*/=<>]      { printf("TOKEN: OPERADOR (%s)\n", yytext); }
-
-
-[{}();,]        { printf("TOKEN: SIMBOLO (%s)\n", yytext); }
-
-
+[+\-*/=<>]      { enviar_token_a_gui("OPERADOR", yytext); }
+[{}();,]        { enviar_token_a_gui("SIMBOLO", yytext); }
 [ \t]+          ;
-
-
 \n              { num_linea++; }
 
+"//".*          { enviar_token_a_gui("COMENTARIO", yytext); }
+"/*"([^*]|\*+[^*/])*"*/" { enviar_token_a_gui("COMENTARIO MULTILINEA", yytext); }
 
-
-"//".*          { printf("COMENTARIO (%s)\n", yytext); }
-
-
-"/*"([^*]|\*+[^*/])*"*/" { printf("COMENTARIO MULTILINEA\n"); }
-
-
-.               { printf("TOKEN NO RECONOCIDO (%s)\n", yytext); }
+.               { enviar_token_a_gui("TOKEN NO RECONOCIDO", yytext); }
 
 %%
 
-
-int yywrap(void) {
-    return 1;
-}
-
-int main(int argc, char **argv) {
-    if (argc > 1) {
-        FILE *archivo = fopen(argv[1], "r");
-        if (!archivo) {
-            perror("No se pudo abrir el archivo de entrada");
-            return 1;
-        }
-        yyin = archivo;
-    }
-
-    printf("=== ANALIZADOR LÉXICO ===\n\n");
-    yylex();
-    printf("\n=== FIN DEL ANÁLISIS ===\n");
-    printf("Líneas analizadas: %d\n", num_linea);
-    return 0;
-}
+int yywrap(void) { return 1; }

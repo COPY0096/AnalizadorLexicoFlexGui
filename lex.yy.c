@@ -1,5 +1,6 @@
+#line 1 "lex.yy.c"
 
-#line 2 "lex.yy.c"
+#line 3 "lex.yy.c"
 
 #define  YY_INT_ALIGNED short int
 
@@ -482,9 +483,21 @@ char *yytext;
 #include <stdio.h>
 #include <stdlib.h>
 
-int num_linea = 1;  // Contador de líneas
-#line 486 "lex.yy.c"
-#line 487 "lex.yy.c"
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+void enviar_token_a_gui(const char* tipo, const char* valor);
+int yywrap(void);
+int yylex(void);
+
+#ifdef __cplusplus
+}
+#endif
+
+int num_linea = 1;
+#line 499 "lex.yy.c"
+#line 500 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -701,11 +714,10 @@ YY_DECL
 		}
 
 	{
-#line 14 "lexer.l"
+#line 26 "lexer.l"
 
 
-
-#line 708 "lex.yy.c"
+#line 720 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -764,112 +776,112 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 17 "lexer.l"
-{ printf("TOKEN: IF\n"); }
+#line 28 "lexer.l"
+{ enviar_token_a_gui("IF", yytext); }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 18 "lexer.l"
-{ printf("TOKEN: ELSE\n"); }
+#line 29 "lexer.l"
+{ enviar_token_a_gui("ELSE", yytext); }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 19 "lexer.l"
-{ printf("TOKEN: WHILE\n"); }
+#line 30 "lexer.l"
+{ enviar_token_a_gui("WHILE", yytext); }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 20 "lexer.l"
-{ printf("TOKEN: FOR\n"); }
+#line 31 "lexer.l"
+{ enviar_token_a_gui("FOR", yytext); }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 21 "lexer.l"
-{ printf("TOKEN: INT\n"); }
+#line 32 "lexer.l"
+{ enviar_token_a_gui("INT", yytext); }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 22 "lexer.l"
-{ printf("TOKEN: FLOAT\n"); }
+#line 33 "lexer.l"
+{ enviar_token_a_gui("FLOAT", yytext); }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 23 "lexer.l"
-{ printf("TOKEN: RETURN\n"); }
+#line 34 "lexer.l"
+{ enviar_token_a_gui("RETURN", yytext); }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 26 "lexer.l"
-{ printf("TOKEN: NUMERO (%s)\n", yytext); }
+#line 36 "lexer.l"
+{ enviar_token_a_gui("NUMERO", yytext); }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 27 "lexer.l"
-{ printf("TOKEN: IDENTIFICADOR (%s)\n", yytext); }
+#line 37 "lexer.l"
+{ enviar_token_a_gui("IDENTIFICADOR", yytext); }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 30 "lexer.l"
-{ printf("TOKEN: OPERADOR RELACIONAL (%s)\n", yytext); }
+#line 39 "lexer.l"
+{ enviar_token_a_gui("OPERADOR RELACIONAL", yytext); }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 31 "lexer.l"
-{ printf("TOKEN: OPERADOR RELACIONAL (%s)\n", yytext); }
+#line 40 "lexer.l"
+{ enviar_token_a_gui("OPERADOR RELACIONAL", yytext); }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 32 "lexer.l"
-{ printf("TOKEN: OPERADOR RELACIONAL (%s)\n", yytext); }
+#line 41 "lexer.l"
+{ enviar_token_a_gui("OPERADOR RELACIONAL", yytext); }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 33 "lexer.l"
-{ printf("TOKEN: OPERADOR RELACIONAL (%s)\n", yytext); }
+#line 42 "lexer.l"
+{ enviar_token_a_gui("OPERADOR RELACIONAL", yytext); }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 35 "lexer.l"
-{ printf("TOKEN: OPERADOR (%s)\n", yytext); }
+#line 44 "lexer.l"
+{ enviar_token_a_gui("OPERADOR", yytext); }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 38 "lexer.l"
-{ printf("TOKEN: SIMBOLO (%s)\n", yytext); }
+#line 45 "lexer.l"
+{ enviar_token_a_gui("SIMBOLO", yytext); }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 41 "lexer.l"
+#line 46 "lexer.l"
 ;
 	YY_BREAK
 case 17:
 /* rule 17 can match eol */
 YY_RULE_SETUP
-#line 44 "lexer.l"
+#line 47 "lexer.l"
 { num_linea++; }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 48 "lexer.l"
-{ printf("COMENTARIO (%s)\n", yytext); }
+#line 49 "lexer.l"
+{ enviar_token_a_gui("COMENTARIO", yytext); }
 	YY_BREAK
 case 19:
 /* rule 19 can match eol */
 YY_RULE_SETUP
-#line 51 "lexer.l"
-{ printf("COMENTARIO MULTILINEA\n"); }
+#line 50 "lexer.l"
+{ enviar_token_a_gui("COMENTARIO MULTILINEA", yytext); }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 54 "lexer.l"
-{ printf("TOKEN NO RECONOCIDO (%s)\n", yytext); }
+#line 52 "lexer.l"
+{ enviar_token_a_gui("TOKEN NO RECONOCIDO", yytext); }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 56 "lexer.l"
+#line 54 "lexer.l"
 ECHO;
 	YY_BREAK
-#line 872 "lex.yy.c"
+#line 884 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1874,28 +1886,8 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 56 "lexer.l"
+#line 54 "lexer.l"
 
 
-
-int yywrap(void) {
-    return 1;
-}
-
-int main(int argc, char **argv) {
-    if (argc > 1) {
-        FILE *archivo = fopen(argv[1], "r");
-        if (!archivo) {
-            perror("No se pudo abrir el archivo de entrada");
-            return 1;
-        }
-        yyin = archivo;
-    }
-
-    printf("=== ANALIZADOR LÉXICO ===\n\n");
-    yylex();
-    printf("\n=== FIN DEL ANÁLISIS ===\n");
-    printf("Líneas analizadas: %d\n", num_linea);
-    return 0;
-}
+int yywrap(void) { return 1; }
 
